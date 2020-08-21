@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="HEW_rob">
+  <!--link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.16541 0.25404 -0.094006"
+        rpy="0 0 0" />
+      <mass
+        value="2.4395" />
+      <inertia
+        ixx="0.021816"
+        ixy="1.442E-06"
+        ixz="1.7046E-09"
+        iyy="0.033317"
+        iyz="1.9747E-08"
+        izz="0.054717" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HEW_test2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HEW_test2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link-->
+  <link
+    name="Arm_Link">
+    <inertial>
+      <!--origin
+        xyz="-0.054863 0.00021536 0.092238"
+        rpy="0 0 0" /-->
+      <origin
+        xyz="0 0 1"
+        rpy="0 0 0" />
+      <mass
+        value="0.19866" />
+      <inertia
+        ixx="0.0001194"
+        ixy="6.1121E-07"
+        ixz="-2.2554E-05"
+        iyy="0.00028255"
+        iyz="7.9362E-08"
+        izz="0.00020139" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Arm_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Arm_Link_col.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Arm_Link_cont"
+    type="revolute">
+    <origin
+      xyz="0.31115 0.254 -0.084782"
+      rpy="3.1416 0 0" />
+    <parent
+      link="world" />
+    <child
+      link="Arm_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="1.745"
+      upper="-1.745"
+      effort="0"
+      velocity="20" />
+  </joint>
+  <!--link
+    name="Vert_Trans">
+    <inertial>
+      <origin
+        xyz="1.0521E-05 -8.3077E-06 -0.09646"
+        rpy="0 0 0" />
+      <mass
+        value="0.064458" />
+      <inertia
+        ixx="0.0001464"
+        ixy="-5.7621E-09"
+        ixz="-2.7526E-09"
+        iyy="0.00014639"
+        iyz="2.171E-09"
+        izz="4.2814E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HEW_test2/meshes/Vert_Trans.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HEW_test2/meshes/Vert_Trans.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Vert_Trans_Cont"
+    type="continuous">
+    <origin
+      xyz="-0.11332 0.00041739 0.22913"
+      rpy="0 0 0" />
+    <parent
+      link="Arm_Link" />
+    <child
+      link="Vert_Trans" />
+    <axis
+      xyz="0 0 -1" />
+  </joint-->
+  <link
+    name="Horz_Trans">
+    <inertial>
+      <origin
+        xyz="0.034998 -2.4617E-05 0.00021996"
+        rpy="0 0 0" />
+      <mass
+        value="0.015733" />
+      <inertia
+        ixx="1.3497E-06"
+        ixy="-6.6393E-10"
+        ixz="1.622E-08"
+        iyy="6.4569E-06"
+        iyz="5.1067E-10"
+        izz="6.2659E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Horz_Trans.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Horz_Trans_col.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Horz_Trans_Coord"
+    type="continuous">
+    <origin
+      xyz="-0.10387 0.00038259 -0.0853"
+      rpy="0 0 -0.0036833" />
+    <parent
+      link="Arm_Link" />
+    <child
+      link="Horz_Trans" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Front_Wheel_link">
+    <inertial>
+      <origin
+        xyz="-0.0034284 1.8188E-06 0.0033385"
+        rpy="0 0 0" />
+      <mass
+        value="0.33878" />
+      <inertia
+        ixx="0.00011788"
+        ixy="7.0842E-12"
+        ixz="3.047E-06"
+        iyy="0.00033033"
+        iyz="3.8432E-10"
+        izz="0.00033294" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Front_Wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0.45098 0.93725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Front_Wheel_link_col.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Wheel_cont"
+    type="continuous">
+    <origin
+      xyz="0.10387 0 0"
+      rpy="0 0 -3.1416" />
+    <parent
+      link="Horz_Trans" />
+    <child
+      link="Front_Wheel_link" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <!--link
+    name="Left_Rear">
+    <inertial>
+      <origin
+        xyz="-2.173E-13 0.025005 -1.3857E-13"
+        rpy="0 0 0" />
+      <mass
+        value="0.59959" />
+      <inertia
+        ixx="0.0007195"
+        ixy="9.5944E-21"
+        ixz="-2.8773E-20"
+        iyy="0.0011979"
+        iyz="-5.8177E-20"
+        izz="0.0007195" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Left_Rear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew_description/meshes/Left_Rear_col.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Rear_cont"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Left_Rear" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="Right_Rear">
+    <inertial>
+      <origin
+        xyz="1.2707E-13 -0.025005 2.5621E-13"
+        rpy="0 0 0" />
+      <mass
+        value="0.59959" />
+      <inertia
+        ixx="0.0007195"
+        ixy="3.0827E-20"
+        ixz="3.8278E-20"
+        iyy="0.0011979"
+        iyz="3.2262E-20"
+        izz="0.0007195" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HEW_test2/meshes/Right_Rear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HEW_test2/meshes/Right_Rear.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Rear_cont"
+    type="continuous">
+    <origin
+      xyz="0 0.508 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right_Rear" />
+    <axis
+      xyz="0 1 0" />
+  </joint-->
+</robot>
