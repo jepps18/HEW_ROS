@@ -6,7 +6,7 @@ hew:
 
   # Position Controllers ---------------------------------------
   joint1_position_controller:
-    type: effort_controllers/JointEffortController
+    type: effort_controllers/JointPositionController
     joint: Arm_Link_cont
     pid: {p: 100.0, i: 0.01, d: 10.0}
  
