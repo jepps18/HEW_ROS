@@ -20,7 +20,9 @@
 
 ## How to move a joint (Example Arm)  
 In a terminal run the following command  
-	$ rostopic pub -1 /hew/joint1_posion_controller/command std_msgs/Float64 "data: 0.7"
+	$ rostopic pub -1 /hew/joint1_positon_controller/command std_msgs/Float64 "data: 0.7".  
+The ros topic for the large arm is /hew/joint1_position_controller/command   
+The ros topic for the horizontal transmssion (the part that drives the wheel) is /hew/joint2_position_controller/command   
 
 Notes:  
 -The currenet model may not look like the actual vehicle yet. The vehicle is being imported via an iterative process.  
