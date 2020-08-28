@@ -1,2 +1,0 @@
-gazebo_ros_control/pid_gains:
-  Arm_Link_cont: {p: 1.0, i: 0.0, d: 1.0}

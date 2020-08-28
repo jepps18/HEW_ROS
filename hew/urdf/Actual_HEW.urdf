@@ -69,7 +69,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://hew_description/meshes/Arm_Link.STL" />
+          filename="package://hew/urdf/meshes/Arm_Link.STL" />
       </geometry>
       <material
         name="">
@@ -105,6 +105,7 @@
       effort="0"
       velocity="20" />
   </joint>
+  
   <!--link
     name="Vert_Trans">
     <inertial>

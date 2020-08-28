@@ -68,22 +68,70 @@
       </plugin>
     </sensor>
   </gazebo-->
-
-    <gazebo>
+<gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/hew</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
 
+<link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.16541 0.25404 -0.094006"
+        rpy="0 0 0"/>
+      <mass
+        value="2.4395" />
+      <inertia
+        ixx="0.021816"
+        ixy="1.442E-06"
+        ixz="1.7046E-09"
+        iyy="0.033317"
+        iyz="1.9747E-08"
+        izz="0.054717" />
+    </inertial>
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew/urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hew/urdf/meshes/base_link_col.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="world"/>
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin
+        xyz="0 0 1"
+        rpy="0 3.14 0" />
+  </joint>
+
     <link
     name="Arm_Link">
     <inertial>
-      <!--origin
-        xyz="-0.054863 0.00021536 0.092238"
-        rpy="0 0 0" /-->
       <origin
-        xyz="0 0 1"
+        xyz="-0.054863 0.00021536 0.092238"
         rpy="0 0 0" />
       <mass
         value="0.19866" />
@@ -120,29 +168,24 @@
     </collision>
   </link>
 
-  <link name="world"/>
   <joint
-    name="Arm_Link_cont"
-    type="revolute">
-    <origin
-      xyz="0.31115 0.254 1"
-      rpy="0 0 0" />
+    name="joint1"
+    type="continuous"> <!-- Type was revolute-->
+      <origin
+      xyz="0.31115 0.254 -0.084782"
+      rpy="3.1416 0 0" />
     <parent
-      link="world" />
+      link="base_link" />
     <child
       link="Arm_Link" />
     <axis
-      xyz="0 0 -1" />
-    <limit
-      lower="1.745"
-      upper="-1.745"
-      effort="0"
-      velocity="20" />
+      xyz="0 0 1" />
+      <dynamics damping="0.05"/>
   </joint>
   
     <transmission name="arm_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="Arm_Link_cont">
+    <joint name="joint1">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor1">
@@ -151,6 +194,113 @@
     </actuator>
   </transmission>
 
+   
+
+
+<!-- Debugging -->
+<!-- Example model: Two sticks, won't work with revolute joint-->
+<!--gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/hew</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+<link name="world"/>
+<joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="link1"/>
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0"/>
+  </joint>
+
+  <link name="link1">
+
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+  <box size="0.05 0.05 0.5"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+  <box size="0.05 0.05 0.5"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+    ixx="0.0033" ixy="0.0" ixz="0.0"
+    iyy="0.3341666" iyz="0.0"
+    izz="0.0016666"/>
+    </inertial>
+  </link>
+
+  <link name="link2">
+    <collision>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <geometry>
+  <box size="0.05 0.05 0.5"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+  <box size="0.05 0.05 0.5"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+    ixx="0.0033" ixy="0.0" ixz="0.0"
+    iyy="0.3341666" iyz="0.0"
+    izz="0.0016666"/>
+    </inertial>
+  </link>
+<joint
+    name="joint1"
+    type="continuous"> 
+    <origin
+      xyz="0.31115 0.254 1"
+      rpy="0 0 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="1 0 0" />
+    <dynamics damping="0.7"/>
+    <limit
+      lower="1.745"
+      upper="-1.745"
+      effort="1000"
+      velocity="1000" />
+      <dynamics damping="0.05"/>
+  </joint>
+
+    <transmission name="arm_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission-->
+<!-- *****************************-->
+
+
+<!-- Basic car model example-->
    <!--link name="link_chassis">
     <pose>0 0 0.1 0 0 0</pose>
     <inertial>

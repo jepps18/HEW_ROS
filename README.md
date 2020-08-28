@@ -16,11 +16,16 @@
 
 ## How to launch the HEW Model  
 	$ cd ~/catkin_ws  
-	$ roslaunch any_name hew_world.launch  
+	$ roslaunch any_name hew_world.launch   
+
+## How to move a joint (Example Arm)  
+In a terminal run the following command  
+	$ rostopic pub -1 /hew/joint1_posion_controller/command std_msgs/Float64 "data: 0.7"
 
 Notes:  
 -The currenet model may not look like the actual vehicle yet. The vehicle is being imported via an iterative process.  
 -Everytime catkin_make is used you must source devel/setup.bash  
 
 ## Useful Resources  
--http://wiki.ros.org/ros_control
+-http://wiki.ros.org/ros_control  
+-The PID values in the hew_control.yaml file need to be adjusted, damping value in URDF file also needs adjusting
