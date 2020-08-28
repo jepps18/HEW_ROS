@@ -8,5 +8,9 @@ hew:
   joint1_position_controller:
     type: effort_controllers/JointPositionController
     joint: joint1
-    pid: {p: 5, i: 1, d: 1}
- 
+    pid: {p: 0.25, i: 0.0, d: 0.0}
+  # Position Controllers ---------------------------------------
+  joint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint2
+    pid: {p: 0.001, i: 0.0, d: 0.0}
